@@ -232,7 +232,7 @@ if (currentPage === 'cadastro.html') {
       setLoading(cadastroBtn, false);
 
       // Redireciona para a home após cadastro
-      window.location.href = 'onboarding';
+      window.location.href = 'passo1.html';
     });
   }
 }
