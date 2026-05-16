@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Primeiros Passos</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- S1 -->
+  <div class="slide active" id="s1">
+    <div class="dots" id="dots1"></div>
+    <div class="icon-ring"><i class="ti ti-user" aria-hidden="true"></i></div>
+    <div class="titles">
+      <h1>Como podemos te <em>chamar?</em></h1>
+      <p>Personalizamos a sua experiência com base no seu nome. Pode ser seu apelido, tá bom!</p>
+    </div>
+    <div class="inp-wrap">
+      <i class="ti ti-user" aria-hidden="true"></i>
+      <input id="nameInp" type="text" placeholder="Seu nome ou apelido..." maxlength="30" autocomplete="off"/>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="stat-val">50k+</span><span class="stat-label">Usuários ativos</span></div>
+      <div class="stat"><span class="stat-val">2M+</span><span class="stat-label">Tarefas concluídas</span></div>
+      <div class="stat"><span class="stat-val">4.9</span><span class="stat-label">Avaliação</span></div>
+    </div>
+    <button class="arrow-btn" id="btn1" onclick="go(2)" disabled aria-label="Continuar">
+      <i class="ti ti-arrow-down" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <!-- S2 -->
+  <div class="slide" id="s2">
+    <div class="dots" id="dots2"></div>
+    <div class="icon-ring"><i class="ti ti-calendar" aria-hidden="true"></i></div>
+    <div class="titles">
+      <h1>Qual a sua <em>faixa etária?</em></h1>
+      <p>Isso nos ajuda a adaptar sugestões e metas para o seu momento de vida.</p>
+    </div>
+    <div class="chips" id="ageChips">
+      <button class="chip" onclick="selAge(this)" data-v="Menos de 16">Menos de 16</button>
+      <button class="chip" onclick="selAge(this)" data-v="16 – 21">16 – 21</button>
+      <button class="chip" onclick="selAge(this)" data-v="22 – 30">22 – 30</button>
+      <button class="chip" onclick="selAge(this)" data-v="31 – 40">31 – 40</button>
+      <button class="chip" onclick="selAge(this)" data-v="41 – 55">41 – 55</button>
+      <button class="chip" onclick="selAge(this)" data-v="56 ou mais">56 ou mais</button>
+      <button class="chip" onclick="selAge(this)" data-v="Prefiro não dizer">Prefiro não dizer</button>
+    </div>
+    <div class="row-actions">
+      <button class="btn-back" onclick="go(1)"><i class="ti ti-arrow-left" aria-hidden="true"></i>Voltar</button>
+      <button class="arrow-btn" id="btn2" onclick="go(3)" disabled aria-label="Continuar">
+        <i class="ti ti-arrow-down" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="slide" id="s3">
+    <div class="dots" id="dots3"></div>
+    <div class="icon-ring"><i class="ti ti-layout-grid" aria-hidden="true"></i></div>
+    <div class="titles">
+      <h1>O que você quer <em>organizar?</em></h1>
+      <p>Selecione um ou mais. Você pode mudar depois nas configurações.</p>
+    </div>
+    <div class="interests">
+      <div class="icard" onclick="togInt(this)" data-v="Trabalho"><div class="icard-ico"><i class="ti ti-briefcase" aria-hidden="true"></i></div><span>Trabalho</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Estudos"><div class="icard-ico"><i class="ti ti-book" aria-hidden="true"></i></div><span>Estudos</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Saúde"><div class="icard-ico"><i class="ti ti-activity" aria-hidden="true"></i></div><span>Saúde</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Hobbies"><div class="icard-ico"><i class="ti ti-palette" aria-hidden="true"></i></div><span>Hobbies</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Finanças"><div class="icard-ico"><i class="ti ti-coin" aria-hidden="true"></i></div><span>Finanças</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Família"><div class="icard-ico"><i class="ti ti-home" aria-hidden="true"></i></div><span>Família</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Projetos"><div class="icard-ico"><i class="ti ti-rocket" aria-hidden="true"></i></div><span>Projetos</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Viagens"><div class="icard-ico"><i class="ti ti-plane" aria-hidden="true"></i></div><span>Viagens</span></div>
+      <div class="icard" onclick="togInt(this)" data-v="Rotina"><div class="icard-ico"><i class="ti ti-repeat" aria-hidden="true"></i></div><span>Rotina</span></div>
+    </div>
+    <div class="row-actions">
+      <button class="btn-back" onclick="go(2)"><i class="ti ti-arrow-left" aria-hidden="true"></i>Voltar</button>
+      <button class="arrow-btn" id="btn3" onclick="goSum()" disabled aria-label="Ver resumo">
+        <i class="ti ti-arrow-down" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- S4 resumo -->
+  <div class="slide" id="s4">
+    <div class="icon-ring" style="background:rgba(34,197,94,.15);border-color:rgba(34,197,94,.4)">
+      <i class="ti ti-circle-check" style="font-size:32px;color:#22C55E" aria-hidden="true"></i>
+    </div>
+    <div class="titles">
+      <h1>Pronto, <em id="sumName">—</em>!</h1>
+      <p>Confirme suas preferências antes de começar.</p>
+    </div>
+    <div class="summary-list">
+      <div class="srow"><i class="ti ti-user" aria-hidden="true"></i><div><div class="srow-label">Nome</div><div class="srow-val" id="sName">—</div></div></div>
+      <div class="srow"><i class="ti ti-calendar" aria-hidden="true"></i><div><div class="srow-label">Faixa etária</div><div class="srow-val" id="sAge">—</div></div></div>
+      <div class="srow srow-col">
+        <div class="srow-top"><i class="ti ti-layout-grid" aria-hidden="true"></i><span class="srow-label">Interesses</span></div>
+        <div class="tags" id="sInts"></div>
+      </div>
+    </div>
+    <div class="row-actions">
+      <button class="btn-back" onclick="go(3)"><i class="ti ti-arrow-left" aria-hidden="true"></i>Editar</button>
+      <button class="btn-start" onclick="finish()">Começar agora<i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

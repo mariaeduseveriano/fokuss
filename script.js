@@ -71,37 +71,51 @@ function setLoading(btn, loading) {
 function addPasswordToggle(input) {
   const wrap = input.closest('.inp-wrap');
 
+  const eyeOpen = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  const eyeClosed = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+
+  // Cria um wrapper relativo ao redor do inp-wrap para posicionar o botão corretamente
+  const container = document.createElement('div');
+  container.style.cssText = 'position: relative; display: block;';
+  wrap.parentNode.insertBefore(container, wrap);
+  container.appendChild(wrap);
+
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.setAttribute('aria-label', 'Mostrar senha');
   btn.style.cssText = `
     position: absolute;
     right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 4px;
     display: flex;
     align-items: center;
+    justify-content: center;
     color: #9ca3af;
     transition: color 0.2s;
+    z-index: 10;
   `;
-
-  const eyeOpen = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
-  const eyeClosed = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
-
   btn.innerHTML = eyeOpen;
 
-  btn.addEventListener('click', () => {
-    const isPassword = input.type === 'password';
-    input.type = isPassword ? 'text' : 'password';
-    btn.innerHTML = isPassword ? eyeClosed : eyeOpen;
-    btn.style.color = isPassword ? '#6366f1' : '#9ca3af';
+  let visible = false;
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    visible = !visible;
+    input.type = visible ? 'text' : 'password';
+    btn.innerHTML = visible ? eyeClosed : eyeOpen;
+    btn.style.color = visible ? '#22c55e' : '#9ca3af';
+    btn.setAttribute('aria-label', visible ? 'Ocultar senha' : 'Mostrar senha');
   });
 
-  // Ajusta padding do input para não sobrepor o ícone
-  input.style.paddingRight = '40px';
-  wrap.appendChild(btn);
+  // Padding no input para o texto não chegar até o ícone
+  input.style.paddingRight = '42px';
+
+  container.appendChild(btn);
 }
 
 // Aplica toggle em todos os campos de senha da página
@@ -110,124 +124,115 @@ document.querySelectorAll('input[type="password"]').forEach(addPasswordToggle);
 
 // ─── Login ────────────────────────────────────────────────────────────────────
 
-const loginBtn = document.querySelector('.auth-card .btn-primary.full');
-
-if (currentPage === 'login.html' && loginBtn) {
+if (currentPage === 'login.html') {
+  const loginBtn = document.querySelector('.auth-card .btn-primary.full');
   const [emailInput, senhaInput] = document.querySelectorAll('.auth-card input');
 
-  // Limpa erro ao digitar
-  emailInput.addEventListener('input', () => clearError(emailInput));
-  senhaInput.addEventListener('input', () => clearError(senhaInput));
+  if (loginBtn && emailInput && senhaInput) {
+    emailInput.addEventListener('input', () => clearError(emailInput));
+    senhaInput.addEventListener('input', () => clearError(senhaInput));
 
-  loginBtn.addEventListener('click', async () => {
-    let valid = true;
+    loginBtn.addEventListener('click', async () => {
+      let valid = true;
 
-    if (!emailInput.value.trim()) {
-      showError(emailInput, 'Informe seu e-mail.');
-      valid = false;
-    } else if (!isValidEmail(emailInput.value.trim())) {
-      showError(emailInput, 'E-mail inválido.');
-      valid = false;
-    }
+      if (!emailInput.value.trim()) {
+        showError(emailInput, 'Informe seu e-mail.');
+        valid = false;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        showError(emailInput, 'E-mail inválido.');
+        valid = false;
+      }
 
-    if (!senhaInput.value) {
-      showError(senhaInput, 'Informe sua senha.');
-      valid = false;
-    } else if (senhaInput.value.length < 6) {
-      showError(senhaInput, 'Mínimo 6 caracteres.');
-      valid = false;
-    }
+      if (!senhaInput.value) {
+        showError(senhaInput, 'Informe sua senha.');
+        valid = false;
+      } else if (senhaInput.value.length < 6) {
+        showError(senhaInput, 'Mínimo 6 caracteres.');
+        valid = false;
+      }
 
-    if (!valid) return;
+      if (!valid) return;
 
-    setLoading(loginBtn, true);
+      setLoading(loginBtn, true);
+      await new Promise(r => setTimeout(r, 1500));
+      setLoading(loginBtn, false);
 
-    // Simula chamada à API (substitua pelo fetch real)
-    await new Promise(r => setTimeout(r, 1500));
-
-    setLoading(loginBtn, false);
-
-    // Sucesso → redireciona para o app (ajuste o destino conforme necessário)
-    alert('Login realizado com sucesso! ✓');
-    // window.location.href = 'home.html';
-  });
+      // Redireciona para a home após login
+      window.location.href = 'home.html';
+    });
+  }
 }
 
 
 // ─── Cadastro ─────────────────────────────────────────────────────────────────
 
-const cadastroBtn = document.querySelector('.auth-card .btn-primary.full');
-
-if (currentPage === 'cadastro.html' && cadastroBtn) {
+if (currentPage === 'cadastro.html') {
+  const cadastroBtn = document.querySelector('.auth-card .btn-primary.full');
   const [nomeInput, emailInput, senhaInput] = document.querySelectorAll('.auth-card input');
 
-  // Adiciona campo de confirmar senha dinamicamente
-  const senhaField = senhaInput.closest('.field');
-  const confirmField = document.createElement('div');
-  confirmField.className = 'field';
-  confirmField.innerHTML = `
-    <label>Confirmar senha</label>
-    <div class="inp-wrap">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <rect x="3" y="11" width="18" height="11" rx="2"/>
-        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-      </svg>
-      <input type="password" placeholder="Repita a senha">
-    </div>
-  `;
-  senhaField.after(confirmField);
+  if (cadastroBtn && nomeInput && emailInput && senhaInput) {
+    const senhaField = senhaInput.closest('.field');
+    const confirmField = document.createElement('div');
+    confirmField.className = 'field';
+    confirmField.innerHTML = `
+      <label>Confirmar senha</label>
+      <div class="inp-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <rect x="3" y="11" width="18" height="11" rx="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+        <input type="password" placeholder="Repita a senha">
+      </div>
+    `;
+    senhaField.after(confirmField);
 
-  const confirmInput = confirmField.querySelector('input');
-  addPasswordToggle(confirmInput);
+    const confirmInput = confirmField.querySelector('input');
+    addPasswordToggle(confirmInput);
 
-  // Limpa erros ao digitar
-  [nomeInput, emailInput, senhaInput, confirmInput].forEach(inp => {
-    inp.addEventListener('input', () => clearError(inp));
-  });
+    [nomeInput, emailInput, senhaInput, confirmInput].forEach(inp => {
+      inp.addEventListener('input', () => clearError(inp));
+    });
 
-  cadastroBtn.addEventListener('click', async () => {
-    let valid = true;
+    cadastroBtn.addEventListener('click', async () => {
+      let valid = true;
 
-    if (!nomeInput.value.trim()) {
-      showError(nomeInput, 'Informe seu nome.');
-      valid = false;
-    }
+      if (!nomeInput.value.trim()) {
+        showError(nomeInput, 'Informe seu nome.');
+        valid = false;
+      }
 
-    if (!emailInput.value.trim()) {
-      showError(emailInput, 'Informe seu e-mail.');
-      valid = false;
-    } else if (!isValidEmail(emailInput.value.trim())) {
-      showError(emailInput, 'E-mail inválido.');
-      valid = false;
-    }
+      if (!emailInput.value.trim()) {
+        showError(emailInput, 'Informe seu e-mail.');
+        valid = false;
+      } else if (!isValidEmail(emailInput.value.trim())) {
+        showError(emailInput, 'E-mail inválido.');
+        valid = false;
+      }
 
-    if (!senhaInput.value) {
-      showError(senhaInput, 'Crie uma senha.');
-      valid = false;
-    } else if (senhaInput.value.length < 6) {
-      showError(senhaInput, 'Mínimo 6 caracteres.');
-      valid = false;
-    }
+      if (!senhaInput.value) {
+        showError(senhaInput, 'Crie uma senha.');
+        valid = false;
+      } else if (senhaInput.value.length < 6) {
+        showError(senhaInput, 'Mínimo 6 caracteres.');
+        valid = false;
+      }
 
-    if (!confirmInput.value) {
-      showError(confirmInput, 'Confirme sua senha.');
-      valid = false;
-    } else if (senhaInput.value !== confirmInput.value) {
-      showError(confirmInput, 'As senhas não coincidem.');
-      valid = false;
-    }
+      if (!confirmInput.value) {
+        showError(confirmInput, 'Confirme sua senha.');
+        valid = false;
+      } else if (senhaInput.value !== confirmInput.value) {
+        showError(confirmInput, 'As senhas não coincidem.');
+        valid = false;
+      }
 
-    if (!valid) return;
+      if (!valid) return;
 
-    setLoading(cadastroBtn, true);
+      setLoading(cadastroBtn, true);
+      await new Promise(r => setTimeout(r, 1500));
+      setLoading(cadastroBtn, false);
 
-    // Simula chamada à API (substitua pelo fetch real)
-    await new Promise(r => setTimeout(r, 1500));
-
-    setLoading(cadastroBtn, false);
-
-    // Sucesso → redireciona para login ou home
-    alert('Conta criada com sucesso! ✓');
-    // window.location.href = 'login.html';
-  });
+      // Redireciona para a home após cadastro
+      window.location.href = 'onboarding';
+    });
+  }
 }
