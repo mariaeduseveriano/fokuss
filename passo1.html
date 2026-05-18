@@ -1,74 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Primeiros Passos</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#0D1424;--surface:#131C2E;--primary:#22C55E;--text:#F9FAFB;--text-sec:#8B95A8;--border:#1E2A3A;--font:'Segoe UI',sans-serif;--tr:0.22s ease}
-    body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh}
-    .screen{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px}
-    .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;width:100%;max-width:540px}
-    .dots{display:flex;gap:6px;justify-content:center}
-    .dot{width:6px;height:6px;border-radius:999px;background:var(--border)}
-    .dot.active{background:var(--primary);width:20px}
-    .icon-ring{width:80px;height:80px;border-radius:50%;background:rgba(34,197,94,.1);border:1.5px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center}
-    .icon-ring i{font-size:32px;color:var(--primary)}
-    .titles{display:flex;flex-direction:column;gap:10px;align-items:center}
-    .titles h1{font-size:34px;font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.4px}
-    .titles h1 em{color:var(--primary);font-style:normal}
-    .titles p{font-size:13px;color:var(--text-sec);line-height:1.7;max-width:340px}
-    .inp-wrap{position:relative;width:100%}
-    .inp-wrap i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text-sec);font-size:18px;pointer-events:none}
-    .inp-wrap input{width:100%;padding:15px 16px 15px 48px;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;font-family:var(--font);font-size:14px;color:var(--text);outline:none;transition:border-color var(--tr),box-shadow var(--tr)}
-    .inp-wrap input::placeholder{color:var(--text-sec)}
-    .inp-wrap input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(34,197,94,.1)}
-    .arrow-btn{width:52px;height:52px;border-radius:50%;background:var(--surface);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr)}
-    .arrow-btn:hover{border-color:var(--primary);background:rgba(34,197,94,.08)}
-    .arrow-btn:active{transform:scale(.95)}
-    .arrow-btn:disabled{opacity:.3;cursor:not-allowed}
-    .arrow-btn i{font-size:20px;color:var(--text-sec);transition:color var(--tr)}
-    .arrow-btn:hover i{color:var(--primary)}
-  </style>
 </head>
+
 <body>
-<div class="screen">
-  <div class="wrap">
-    <div class="dots">
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
+
+  <div class="screen">
+
+    <div class="wrap">
+
+      <div class="dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <div class="icon-ring">
+        <i class="ti ti-user"></i>
+      </div>
+
+      <div class="titles">
+        <h1>
+          Como podemos te <em>chamar?</em>
+        </h1>
+
+        <p>
+          Personalizamos a sua experiência com base no seu nome.
+          Pode ser seu apelido, tá bom!
+        </p>
+      </div>
+
+      <form id="form">
+
+        <label for="nameInp">
+          Seu nome
+        </label>
+
+        <div class="inp-wrap">
+
+          <i class="ti ti-user"></i>
+
+          <input
+            id="nameInp"
+            type="text"
+            placeholder="Seu nome ou apelido..."
+            maxlength="30"
+            autocomplete="off"
+          >
+
+        </div>
+
+        <button
+          class="arrow-btn"
+          id="btn"
+          type="submit"
+          disabled
+        >
+          <i class="ti ti-arrow-right"></i>
+        </button>
+
+      </form>
+
     </div>
-    <div class="icon-ring"><i class="ti ti-user" aria-hidden="true"></i></div>
-    <div class="titles">
-      <h1>Como podemos te <em>chamar?</em></h1>
-      <p>Personalizamos a sua experiência com base no seu nome. Pode ser seu apelido, tá bom!</p>
-    </div>
-    <div class="inp-wrap">
-      <i class="ti ti-user" aria-hidden="true"></i>
-      <input id="nameInp" type="text" placeholder="Seu nome ou apelido..." maxlength="30" autocomplete="off"/>
-    </div>
-    <button class="arrow-btn" id="btn" disabled aria-label="Continuar">
-      <i class="ti ti-arrow-right" aria-hidden="true"></i>
-    </button>
+
   </div>
-</div>
-<script>
-  const nameInp = document.getElementById('nameInp');
-  const btn = document.getElementById('btn');
-  nameInp.addEventListener('input', () => {
-    btn.disabled = nameInp.value.trim().length < 2;
-  });
-  nameInp.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && nameInp.value.trim().length >= 2) avancar();
-  });
-  btn.addEventListener('click', avancar);
-  function avancar() {
-    localStorage.setItem('userName', nameInp.value.trim());
-    window.location.href = 'passo2.html';
-  }
-</script>
+
 </body>
 </html>
