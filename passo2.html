@@ -1,33 +1,71 @@
-<div class="container">
-  <div class="progress">
-    <div class="dot active"></div>
-    <div class="dot active"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-  </div>
-  <div class="icon-circle">
-    <svg viewBox="0 0 24 24" stroke-width="1.8">
-      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-      <line x1="16" y1="2" x2="16" y2="6"/>
-      <line x1="8" y1="2" x2="8" y2="6"/>
-      <line x1="3" y1="10" x2="21" y2="10"/>
-    </svg>
-  </div>
-  <h1>Qual a sua <span>faixa etária?</span></h1>
-  <p class="subtitle">Isso nos ajuda a adaptar sugestões e metas para o seu<br>momento de vida.</p>
-  <div class="options">
-    <button class="option-btn">Menos de 16</button>
-    <button class="option-btn">16 – 21</button>
-    <button class="option-btn">22 – 30</button>
-    <button class="option-btn">31 – 40</button>
-    <button class="option-btn">41 – 55</button>
-  </div>
-  <div class="options">
-    <button class="option-btn">56 ou mais</button>
-    <button class="option-btn">Prefiro não dizer</button>
-  </div>
-  <div class="nav">
-    <button class="btn-back">← Voltar</button>
-    <button class="btn-next">→</button>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onboarding</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="slide-screen">
+  <div class="slide-content">
+
+    <div class="dots">
+      <div class="dot active"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="slide-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="1.8">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+    </div>
+
+    <div>
+      <h2>Qual a sua <span class="text-green">faixa etária?</span></h2>
+      <p style="margin-top:8px">Isso nos ajuda a adaptar sugestões e metas para o seu momento de vida.</p>
+    </div>
+
+    <div class="options-row">
+      <button class="option-btn">Menos de 16</button>
+      <button class="option-btn">16 – 21</button>
+      <button class="option-btn">22 – 30</button>
+      <button class="option-btn">31 – 40</button>
+      <button class="option-btn">41 – 55</button>
+      <button class="option-btn">56 ou mais</button>
+      <button class="option-btn">Prefiro não dizer</button>
+    </div>
+
+    <div class="slide-nav">
+      <button class="btn-back-slide" onclick="window.location.href='tela1.html'">← Voltar</button>
+      <button class="btn-arrow" id="next2">→</button>
+    </div>
+
   </div>
 </div>
+
+<script>
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('next2').classList.add('enabled');
+      localStorage.setItem('faixa', btn.textContent);
+    });
+  });
+
+  document.getElementById('next2').addEventListener('click', () => {
+    if (document.getElementById('next2').classList.contains('enabled')) {
+      window.location.href = 'tela3.html';
+    }
+  });
+</script>
+
+</body>
+</html>
