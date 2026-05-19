@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onboarding</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Passo 1</title>
+
+  <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
+
 <div class="slide-screen">
+
   <div class="slide-content">
 
     <div class="dots">
@@ -24,39 +28,88 @@
     </div>
 
     <div>
-      <h2>Como podemos te <em style="color:var(--primary);font-style:italic">chamar?</em></h2>
-      <p>Personalizamos a sua experiência com base no seu nome. Pode ser seu apelido, tá bom!</p>
+      <h2>
+        Como podemos te
+        <em style="color:var(--primary);font-style:italic">
+          chamar?
+        </em>
+      </h2>
+
+      <p>
+        Personalizamos sua experiência com base no seu nome.
+      </p>
     </div>
 
     <div class="input-wrap">
+
       <label for="nome">Seu nome</label>
-      <input class="input-name" id="nome" type="text" placeholder="Seu nome ou apelido..." />
+
+      <input
+        class="input-name"
+        id="nome"
+        type="text"
+        placeholder="Seu nome ou apelido..."
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+
     </div>
 
     <div class="slide-nav">
+
       <span></span>
-      <button class="btn-primary" onclick="proximaTela()">Próximo →</button>
+
+      <button
+        class="btn-next enabled"
+        onclick="proximaTela()"
+      >
+        Próximo →
+      </button>
+
     </div>
 
   </div>
+
 </div>
+
 <script>
-  function proximaTela() {
-    const nome = document.getElementById('nome').value.trim();
-    if (!nome) {
-      document.getElementById('nome').classList.add('error');
-      document.getElementById('nome').focus();
-      return;
-    }
-    localStorage.setItem('nome', nome);
-    window.location.href = 'tela2.html';
+
+const inputNome = document.getElementById('nome');
+
+function proximaTela() {
+
+  const nome = inputNome.value.trim();
+
+  if (!nome) {
+
+    inputNome.classList.add('error');
+
+    inputNome.focus();
+
+    return;
   }
-  document.getElementById('nome').addEventListener('input', function() {
-    this.classList.remove('error');
-  });
-  document.getElementById('nome').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') proximaTela();
-  });
+
+  localStorage.setItem('nome', nome);
+
+  window.location.href = 'passo2.html';
+}
+
+inputNome.addEventListener('input', function () {
+
+  this.classList.remove('error');
+});
+
+inputNome.addEventListener('keydown', function (e) {
+
+  if (e.key === 'Enter') {
+
+    proximaTela();
+  }
+});
+
 </script>
+
 </body>
 </html>

@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onboarding</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Passo 2</title>
+
+  <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
+
 <div class="slide-screen">
+
   <div class="slide-content">
 
     <div class="dots">
@@ -27,41 +32,79 @@
     </div>
 
     <div>
-      <h2>Qual a sua <span class="text-green">faixa etária?</span></h2>
-      <p>Isso nos ajuda a adaptar sugestões e metas para o seu momento de vida.</p>
+      <h2>
+        Qual sua
+        <span class="text-green">faixa etária?</span>
+      </h2>
+
+      <p>
+        Isso nos ajuda a adaptar sugestões.
+      </p>
     </div>
 
     <div class="options-row">
+
       <button class="option-btn">Menos de 16</button>
       <button class="option-btn">16 – 21</button>
       <button class="option-btn">22 – 30</button>
       <button class="option-btn">31 – 40</button>
       <button class="option-btn">41 – 55</button>
       <button class="option-btn">56 ou mais</button>
-      <button class="option-btn">Prefiro não dizer</button>
+
     </div>
 
     <div class="slide-nav">
-      <button class="btn-back" onclick="window.location.href='tela1.html'">← Voltar</button>
-      <button class="btn-next" id="next2">→</button>
+
+      <button
+        class="btn-back"
+        onclick="window.location.href='passo1.html'"
+      >
+        ← Voltar
+      </button>
+
+      <button class="btn-next" id="next2">
+        Próximo →
+      </button>
+
     </div>
 
   </div>
+
 </div>
+
 <script>
-  document.querySelectorAll('.option-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      localStorage.setItem('faixa', btn.textContent);
-      document.getElementById('next2').classList.add('enabled');
-    });
+
+document.querySelectorAll('.option-btn').forEach(btn => {
+
+  btn.addEventListener('click', () => {
+
+    document.querySelectorAll('.option-btn')
+      .forEach(b => b.classList.remove('selected'));
+
+    btn.classList.add('selected');
+
+    localStorage.setItem('faixa', btn.textContent);
+
+    document
+      .getElementById('next2')
+      .classList.add('enabled');
   });
-  document.getElementById('next2').addEventListener('click', () => {
-    if (document.getElementById('next2').classList.contains('enabled')) {
-      window.location.href = 'tela3.html';
+});
+
+document.getElementById('next2')
+  .addEventListener('click', () => {
+
+    if (
+      document
+        .getElementById('next2')
+        .classList.contains('enabled')
+    ) {
+
+      window.location.href = 'passo3.html';
     }
   });
+
 </script>
+
 </body>
 </html>
