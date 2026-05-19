@@ -7,9 +7,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="slide-screen">
-  <div class="slide-content" style="max-width:600px">
+  <div class="slide-content" style="max-width:580px">
 
     <div class="dots">
       <div class="dot active"></div>
@@ -29,7 +28,7 @@
 
     <div>
       <h2>O que você quer <span class="text-green">organizar?</span></h2>
-      <p style="margin-top:8px">Selecione um ou mais. Você pode mudar depois nas configurações.</p>
+      <p>Selecione um ou mais. Você pode mudar depois nas configurações.</p>
     </div>
 
     <div class="category-grid">
@@ -72,13 +71,12 @@
     </div>
 
     <div class="slide-nav">
-      <button class="btn-back-slide" onclick="window.location.href='tela2.html'">← Voltar</button>
-      <button class="btn-arrow" id="next3">→</button>
+      <button class="btn-back" onclick="window.location.href='tela2.html'">← Voltar</button>
+      <button class="btn-next" id="next3">→</button>
     </div>
 
   </div>
 </div>
-
 <script>
   document.querySelectorAll('.category-card').forEach(card => {
     card.addEventListener('click', () => {
@@ -90,13 +88,11 @@
       document.getElementById('next3').classList.toggle('enabled', !!any);
     });
   });
-
   document.getElementById('next3').addEventListener('click', () => {
     if (document.getElementById('next3').classList.contains('enabled')) {
       window.location.href = 'tela4.html';
     }
   });
 </script>
-
 </body>
 </html>

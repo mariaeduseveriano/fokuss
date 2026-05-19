@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="slide-screen">
   <div class="slide-content">
 
@@ -29,7 +28,7 @@
 
     <div>
       <h2>Qual a sua <span class="text-green">faixa etária?</span></h2>
-      <p style="margin-top:8px">Isso nos ajuda a adaptar sugestões e metas para o seu momento de vida.</p>
+      <p>Isso nos ajuda a adaptar sugestões e metas para o seu momento de vida.</p>
     </div>
 
     <div class="options-row">
@@ -43,29 +42,26 @@
     </div>
 
     <div class="slide-nav">
-      <button class="btn-back-slide" onclick="window.location.href='tela1.html'">← Voltar</button>
-      <button class="btn-arrow" id="next2">→</button>
+      <button class="btn-back" onclick="window.location.href='tela1.html'">← Voltar</button>
+      <button class="btn-next" id="next2">→</button>
     </div>
 
   </div>
 </div>
-
 <script>
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
-      document.getElementById('next2').classList.add('enabled');
       localStorage.setItem('faixa', btn.textContent);
+      document.getElementById('next2').classList.add('enabled');
     });
   });
-
   document.getElementById('next2').addEventListener('click', () => {
     if (document.getElementById('next2').classList.contains('enabled')) {
       window.location.href = 'tela3.html';
     }
   });
 </script>
-
 </body>
 </html>
