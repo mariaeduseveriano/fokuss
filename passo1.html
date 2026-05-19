@@ -1,72 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Primeiros Passos</title>
-</head>
-
-<body>
-
-  <div class="screen">
-
-    <div class="wrap">
-
-      <div class="dots">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-
-      <div class="icon-ring">
-        <i class="ti ti-user"></i>
-      </div>
-
-      <div class="titles">
-        <h1>
-          Como podemos te <em>chamar?</em>
-        </h1>
-
-        <p>
-          Personalizamos a sua experiência com base no seu nome.
-          Pode ser seu apelido, tá bom!
-        </p>
-      </div>
-
-      <form id="form">
-
-        <label for="nameInp">
-          Seu nome
-        </label>
-
-        <div class="inp-wrap">
-
-          <i class="ti ti-user"></i>
-
-          <input
-            id="nameInp"
-            type="text"
-            placeholder="Seu nome ou apelido..."
-            maxlength="30"
-            autocomplete="off"
-          >
-
-        </div>
-
-        <button
-          class="arrow-btn"
-          id="btn"
-          type="submit"
-          disabled
-        >
-          <i class="ti ti-arrow-right"></i>
-        </button>
-
-      </form>
-
-    </div>
-
+<div class="container">
+  <div class="progress">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
   </div>
-
-</body>
-</html>
+  <div class="icon-circle">
+    <svg viewBox="0 0 24 24" stroke-width="1.8">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0"/>
+    </svg>
+  </div>
+  <h1>Como podemos te <em>chamar?</em></h1>
+  <p class="subtitle">Personalizamos a sua experiência com base no seu nome.<br>Pode ser seu apelido, tá bom!</p>
+  <div class="field-label">Seu nome</div>
+  <input type="text" placeholder="Seu nome ou apelido..." />
+  <div class="nav">
+    <button class="btn-next">Próximo →</button>
+  </div>
+</div>

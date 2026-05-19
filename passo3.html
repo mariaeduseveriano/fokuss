@@ -1,98 +1,60 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Primeiros Passos</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#0D1424;--surface:#131C2E;--primary:#22C55E;--text:#F9FAFB;--text-sec:#8B95A8;--border:#1E2A3A;--font:'Segoe UI',sans-serif;--tr:0.22s ease}
-    body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100dvh}
-    .screen{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px}
-    .wrap{display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;width:100%;max-width:540px}
-    .dots{display:flex;gap:6px;justify-content:center}
-    .dot{width:6px;height:6px;border-radius:999px;background:var(--border)}
-    .dot.active{background:var(--primary);width:20px}
-    .icon-ring{width:80px;height:80px;border-radius:50%;background:rgba(34,197,94,.1);border:1.5px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center}
-    .icon-ring i{font-size:32px;color:var(--primary)}
-    .titles{display:flex;flex-direction:column;gap:10px;align-items:center}
-    .titles h1{font-size:34px;font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.4px}
-    .titles h1 em{color:var(--primary);font-style:normal}
-    .titles p{font-size:13px;color:var(--text-sec);line-height:1.7;max-width:340px}
-    .interests{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
-    .icard{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:all var(--tr)}
-    .icard:hover{border-color:var(--primary)}
-    .icard.sel{border-color:var(--primary);background:rgba(34,197,94,.07)}
-    .icard-ico{width:40px;height:40px;border-radius:10px;background:rgba(34,197,94,.1);display:flex;align-items:center;justify-content:center}
-    .icard-ico i{font-size:20px;color:var(--primary)}
-    .icard span{font-size:12px;font-weight:500;color:var(--text-sec);transition:color var(--tr)}
-    .icard.sel span{color:var(--text)}
-    .row-actions{display:flex;align-items:center;justify-content:space-between;width:100%}
-    .btn-back{background:transparent;border:none;color:var(--text-sec);font-family:var(--font);font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;padding:8px 0;transition:color var(--tr)}
-    .btn-back:hover{color:var(--text)}
-    .btn-back i{font-size:15px}
-    .arrow-btn{width:52px;height:52px;border-radius:50%;background:var(--surface);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all var(--tr)}
-    .arrow-btn:hover{border-color:var(--primary);background:rgba(34,197,94,.08)}
-    .arrow-btn:active{transform:scale(.95)}
-    .arrow-btn:disabled{opacity:.3;cursor:not-allowed}
-    .arrow-btn i{font-size:20px;color:var(--text-sec);transition:color var(--tr)}
-    .arrow-btn:hover i{color:var(--primary)}
-  </style>
-</head>
-<body>
-<div class="screen">
-  <div class="wrap">
-    <div class="dots">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot active"></div>
+<div class="container">
+  <div class="progress">
+    <div class="dot active"></div>
+    <div class="dot active"></div>
+    <div class="dot active"></div>
+    <div class="dot"></div>
+  </div>
+  <div class="icon-circle">
+    <svg viewBox="0 0 24 24" stroke-width="1.8">
+      <rect x="3" y="3" width="7" height="7" rx="1"/>
+      <rect x="14" y="3" width="7" height="7" rx="1"/>
+      <rect x="3" y="14" width="7" height="7" rx="1"/>
+      <rect x="14" y="14" width="7" height="7" rx="1"/>
+    </svg>
+  </div>
+  <h1>O que você quer <span>organizar?</span></h1>
+  <p class="subtitle">Selecione um ou mais. Você pode mudar depois nas<br>configurações.</p>
+  <div class="grid">
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+      <span>Trabalho</span>
     </div>
-    <div class="icon-ring"><i class="ti ti-layout-grid" aria-hidden="true"></i></div>
-    <div class="titles">
-      <h1>O que você quer <em>organizar?</em></h1>
-      <p>Selecione um ou mais. Você pode mudar depois nas configurações.</p>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      <span>Estudos</span>
     </div>
-    <div class="interests">
-      <div class="icard" data-v="Trabalho"><div class="icard-ico"><i class="ti ti-briefcase" aria-hidden="true"></i></div><span>Trabalho</span></div>
-      <div class="icard" data-v="Estudos"><div class="icard-ico"><i class="ti ti-book" aria-hidden="true"></i></div><span>Estudos</span></div>
-      <div class="icard" data-v="Saúde"><div class="icard-ico"><i class="ti ti-activity" aria-hidden="true"></i></div><span>Saúde</span></div>
-      <div class="icard" data-v="Hobbies"><div class="icard-ico"><i class="ti ti-palette" aria-hidden="true"></i></div><span>Hobbies</span></div>
-      <div class="icard" data-v="Finanças"><div class="icard-ico"><i class="ti ti-coin" aria-hidden="true"></i></div><span>Finanças</span></div>
-      <div class="icard" data-v="Família"><div class="icard-ico"><i class="ti ti-home" aria-hidden="true"></i></div><span>Família</span></div>
-      <div class="icard" data-v="Projetos"><div class="icard-ico"><i class="ti ti-rocket" aria-hidden="true"></i></div><span>Projetos</span></div>
-      <div class="icard" data-v="Viagens"><div class="icard-ico"><i class="ti ti-plane" aria-hidden="true"></i></div><span>Viagens</span></div>
-      <div class="icard" data-v="Rotina"><div class="icard-ico"><i class="ti ti-repeat" aria-hidden="true"></i></div><span>Rotina</span></div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span>Saúde</span>
     </div>
-    <div class="row-actions">
-      <button class="btn-back" onclick="window.location.href='pagina2.html'">
-        <i class="ti ti-arrow-left" aria-hidden="true"></i>Voltar
-      </button>
-      <button class="arrow-btn" id="btn" disabled aria-label="Ver resumo">
-        <i class="ti ti-arrow-right" aria-hidden="true"></i>
-      </button>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+      <span>Hobbies</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      <span>Finanças</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Família</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Projetos</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/></svg>
+      <span>Viagens</span>
+    </div>
+    <div class="card">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M1 4v6h6"/><path d="M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
+      <span>Rotina</span>
     </div>
   </div>
+  <div class="nav">
+    <button class="btn-back">← Voltar</button>
+    <button class="btn-next">→</button>
+  </div>
 </div>
-<script>
-  let ints = [];
-  document.querySelectorAll('.icard').forEach(card => {
-    card.addEventListener('click', () => {
-      const v = card.dataset.v;
-      if (card.classList.contains('sel')) {
-        card.classList.remove('sel');
-        ints = ints.filter(x => x !== v);
-      } else {
-        card.classList.add('sel');
-        ints.push(v);
-      }
-      document.getElementById('btn').disabled = ints.length === 0;
-    });
-  });
-  document.getElementById('btn').addEventListener('click', () => {
-    localStorage.setItem('userInts', JSON.stringify(ints));
-    window.location.href = 'passo4.html';
-  });
-</script>
-</body>
-</html>
