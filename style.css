@@ -555,42 +555,42 @@ p, span, label, .text {
 }
 
 /* ============================================================
-   STYLE EXATO DA REFERÊNCIA
+   ONBOARDING — MESMO VISUAL DA IMAGEM
    ============================================================ */
 
 .onboarding-screen{
   min-height:100dvh;
-  background:#050B1A;
+  background:#070F1F;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  padding:40px 20px;
+  overflow:hidden;
 }
 
 .onboarding-wrapper{
   width:100%;
-  max-width:470px;
+  max-width:430px;
 
   display:flex;
   flex-direction:column;
   align-items:center;
   text-align:center;
 
-  margin-top:-30px;
+  margin-top:-40px;
 }
 
 /* ============================================================
-   PROGRESSO
+   TOPO
    ============================================================ */
 
 .onboarding-progress{
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:6px;
 
-  margin-bottom:26px;
+  margin-bottom:22px;
 }
 
 .onboarding-progress .dot{
@@ -599,24 +599,25 @@ p, span, label, .text {
 
   border-radius:999px;
 
-  background:rgba(255,255,255,.07);
+  background:rgba(255,255,255,.08);
 }
 
 .onboarding-progress .dot.active{
-  width:23px;
+  width:22px;
+
   background:#22C55E;
 
   box-shadow:
-    0 0 8px rgba(34,197,94,.35);
+    0 0 8px rgba(34,197,94,.30);
 }
 
 /* ============================================================
-   ÍCONE
+   CÍRCULO
    ============================================================ */
 
 .onboarding-icon{
-  width:88px;
-  height:88px;
+  width:86px;
+  height:86px;
 
   border-radius:999px;
 
@@ -627,21 +628,18 @@ p, span, label, .text {
   background:
     radial-gradient(
       circle,
-      rgba(34,197,94,.07),
+      rgba(34,197,94,.08),
       rgba(34,197,94,.03)
     );
 
-  border:1px solid rgba(34,197,94,.10);
+  border:1px solid rgba(34,197,94,.12);
 
-  box-shadow:
-    inset 0 0 25px rgba(34,197,94,.02);
-
-  margin-bottom:34px;
+  margin-bottom:30px;
 }
 
 .onboarding-icon svg{
-  width:25px;
-  height:25px;
+  width:24px;
+  height:24px;
 
   color:#22C55E;
 }
@@ -651,15 +649,15 @@ p, span, label, .text {
    ============================================================ */
 
 .onboarding-title{
-  font-size:34px;
+  font-size:28px;
 
   font-weight:800;
 
-  line-height:1.1;
+  line-height:1.15;
 
   letter-spacing:-0.04em;
 
-  color:#FFFFFF;
+  color:#fff;
 
   margin-bottom:10px;
 }
@@ -673,13 +671,13 @@ p, span, label, .text {
    ============================================================ */
 
 .onboarding-subtitle{
-  max-width:330px;
+  max-width:300px;
 
-  font-size:13px;
+  font-size:12px;
 
-  line-height:1.8;
+  line-height:1.7;
 
-  color:rgba(255,255,255,.33);
+  color:rgba(255,255,255,.32);
 
   margin-bottom:34px;
 }
@@ -696,8 +694,6 @@ p, span, label, .text {
   grid-template-columns:repeat(3,1fr);
 
   gap:10px;
-
-  margin-top:6px;
 }
 
 /* ============================================================
@@ -705,74 +701,72 @@ p, span, label, .text {
    ============================================================ */
 
 .interest-card{
-  height:104px;
+  height:98px;
 
   background:rgba(255,255,255,.018);
 
-  border:1px solid rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.04);
 
-  border-radius:16px;
+  border-radius:14px;
 
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
 
-  gap:12px;
-
-  cursor:pointer;
+  gap:10px;
 
   transition:.18s ease;
+
+  cursor:pointer;
 }
 
 .interest-card:hover{
-  background:rgba(255,255,255,.024);
-
   border-color:rgba(34,197,94,.10);
+
+  background:rgba(255,255,255,.025);
 }
 
 .interest-card.active{
-  background:rgba(34,197,94,.05);
+  background:rgba(34,197,94,.045);
 
-  border-color:rgba(34,197,94,.18);
+  border-color:rgba(34,197,94,.16);
 }
 
 /* ============================================================
-   ÍCONE DO CARD
+   ÍCONE INTERNO
    ============================================================ */
 
 .interest-icon{
-  width:34px;
-  height:34px;
+  width:30px;
+  height:30px;
 
-  border-radius:12px;
+  border-radius:10px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  background:rgba(34,197,94,.06);
-
-  border:1px solid rgba(34,197,94,.06);
+  background:rgba(34,197,94,.05);
 }
 
 .interest-icon svg{
-  width:16px;
-  height:16px;
+  width:15px;
+  height:15px;
 
   color:#22C55E;
 }
 
 /* ============================================================
-   TEXTO CARD
+   TEXTO
    ============================================================ */
 
 .interest-card span{
-  font-size:13px;
+  font-size:12px;
 
   font-weight:500;
 
-  color:rgba(255,255,255,.78);
+  color:rgba(255,255,255,.74);
 }
 
 /* ============================================================
@@ -785,3 +779,80 @@ p, span, label, .text {
   display:flex;
   align-items:center;
   justify-content:space-between;
+
+  margin-top:34px;
+}
+
+/* ============================================================
+   VOLTAR
+   ============================================================ */
+
+.onboarding-back{
+  background:none;
+  border:none;
+
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  color:rgba(255,255,255,.42);
+
+  font-size:13px;
+
+  cursor:pointer;
+
+  transition:.18s ease;
+}
+
+.onboarding-back:hover{
+  color:#fff;
+}
+
+/* ============================================================
+   NEXT
+   ============================================================ */
+
+.onboarding-next{
+  width:46px;
+  height:46px;
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,.018);
+
+  border:1px solid rgba(255,255,255,.04);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:rgba(255,255,255,.28);
+
+  cursor:pointer;
+
+  transition:.18s ease;
+}
+
+.onboarding-next:hover{
+  border-color:rgba(34,197,94,.12);
+
+  background:rgba(34,197,94,.04);
+
+  color:#22C55E;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media(max-width:520px){
+
+  .onboarding-wrapper{
+    max-width:100%;
+    padding:0 6px;
+  }
+
+  .interests-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
